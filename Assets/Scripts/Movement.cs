@@ -4,47 +4,43 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float speed;
+    [SerializeField] private float speed;
     private bool isMoving;
-    Rigidbody rb = new Rigidbody();
+    [SerializeField] private float lerpSpeed = 5;
+    public float swerveAmount;
+
+    SwerveInputSystem swerveInput;
+    Rigidbody rb;
+
+    [SerializeField] private float swerveSpeed;
+    [SerializeField] private float maxSwerveAmount;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        speed = 10;
+        swerveInput = GetComponent<SwerveInputSystem>();
         isMoving = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Stop"))
+        {
+            speed = 0;
+        }
     }
 
     void FixedUpdate()
     {
         if (isMoving == true)
         {
-            transform.position += transform.forward * Time.fixedDeltaTime * speed;
+            Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;        //moving forward 
+            Vector3 sideMove = transform.right * swerveSpeed * swerveInput.MoveFactorX * Time.fixedDeltaTime;
+            rb.velocity = Vector3.Lerp(rb.velocity, sideMove + forwardMove, lerpSpeed * Time.fixedDeltaTime);
         }
         else if (isMoving == false)
         {
             speed = 0;
-            //StartCoroutine(WaitForPool());
-        }
-        if (transform.position.y > 0.2f)
-        {
-            transform.position = new Vector3(transform.position.x, 0.2f, transform.position.z);
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag.Equals("Stop"))
-        {                                          
-            speed = 0;
-        }
-    }
-
-    //IEnumerator WaitForPool()
-    //{
-    //    if (isMoving == false)
-    //    {
-    //        yield return new WaitForSeconds(4);
-    //    }
-    //}
 }

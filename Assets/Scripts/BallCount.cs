@@ -28,10 +28,6 @@ public class BallCount : MonoBehaviour
     private void Update()
     {
         PoolUp();
-        // transform.position += transform.up * Time.deltaTime * speed;
-        // if (transform.position.y == 2)
-        //  speed = 0;
-        //transform.position = new Vector3(transform.position.x, posY, transform.position.z);
     }
 
     private void PoolUp()
@@ -41,7 +37,6 @@ public class BallCount : MonoBehaviour
             if (transform.position.y < 0)
                 transform.position += transform.up * Time.deltaTime * speed;
             else speed = 0;
-            //transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
         }
     }
 
