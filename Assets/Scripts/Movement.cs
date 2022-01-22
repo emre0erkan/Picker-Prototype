@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
     public static float speed = 750;
     private bool isMoving;
+    public static bool canStop = true;
     [SerializeField] private float lerpSpeed = 5;
     public float swerveAmount;
 
@@ -24,9 +25,10 @@ public class Movement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Stop"))
+        if (canStop && other.gameObject.tag.Equals("Stop"))
         {
             speed = 0;
+            canStop = false;
         }
     }
     void FixedUpdate()

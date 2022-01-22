@@ -11,10 +11,7 @@ GameObject:
   - component: {fileID: 8341973399765574455}
   - component: {fileID: 5195943839231752041}
   - component: {fileID: 5195943839231752046}
-  - component: {fileID: 5195943839231752043}
-  - component: {fileID: 5195943839231752040}
-  - component: {fileID: 5195943839231752042}
-  - component: {fileID: 8638425625375210506}
+  - component: {fileID: 7069924100998616655}
   m_Layer: 0
   m_Name: Picker
   m_TagString: Collecter
@@ -67,22 +64,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 404f52db9aee2c541889f360d6bd1f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
---- !u!114 &5195943839231752043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988227820735336189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3a48425daebd5c438ef1bd356f1c511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swerveSpeed: 0.5
-  maxSwerveAmount: 2
---- !u!114 &5195943839231752040
+  lerpSpeed: 5
+  swerveAmount: 0
+  swerveSpeed: 0
+  maxSwerveAmount: 0
+--- !u!114 &7069924100998616655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,33 +80,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ee6cfecdc118743a75e4bb849ec6dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &5195943839231752042
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988227820735336189}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 5.0116973, y: 0.8255056, z: 3.7788658}
-  m_Center: {x: -0.526068, y: 0.84464365, z: -0.54488564}
---- !u!64 &8638425625375210506
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988227820735336189}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &5195943837939952192
 GameObject:
   m_ObjectHideFlags: 0

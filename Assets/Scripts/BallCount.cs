@@ -5,14 +5,16 @@ using DG.Tweening;
 
 public class BallCount : MonoBehaviour
 {
+    public GameObject subPool;
+    public GameObject leftBarrier;
+    public GameObject rightBarrier;
+
     public static int ballCount;
     public Text ballCountText;
-    private float poolSpeed = 1;
     public static int goal = 3;
 
     private void Start()
     {
-        DOTween.Init();
         ballCountText.text = ballCount.ToString() + "/" + goal.ToString();
     }
     private void OnTriggerEnter(Collider other)
@@ -21,47 +23,26 @@ public class BallCount : MonoBehaviour
         {
             ballCount++;
             ballCountText.text = ballCount.ToString() + "/" + goal.ToString();
-            StartCoroutine(WaitForPool());
             Destroy(other.gameObject);
+            if (ballCount >= goal)
+            {
+                PoolUp();
+            }
         }
-    }
-
-    private void FixedUpdate()
-    {
-        PoolUp();
-        KeepGoing();
     }
 
     private void PoolUp()
     {
-        if (ballCount >= goal)
-        {
-            if (transform.position.y < -0.019998)
-            {
-                StartCoroutine(WaitForPool());
-                transform.DOMoveY(0, 1);
 
-            }
-            else poolSpeed = 0;
-        }
+        subPool.transform.DOMoveY(0, 1);
+        rightBarrier.transform.DORotate(new Vector3(0, 0, -90), 2f, RotateMode.Fast).OnComplete(() => { Movement.speed = 750; StartCoroutine(CanStop()); });
+        leftBarrier.transform.DORotate(new Vector3(0, 0, 90), 2f, RotateMode.Fast);
     }
 
-    private void KeepGoing()
+    IEnumerator CanStop()
     {
-        if (transform.position.y > -0.019990)
-        {
-            Movement.speed = 750;
-        }
-    }
-
-    //IEnumerator DestroyBall()
-    //{
-    //    yield return new WaitForSecondsRealtime(4f);
-    //}
-
-    IEnumerator WaitForPool()
-    {
-        yield return new WaitForSecondsRealtime(3f);
+        yield return new WaitForSeconds(2f);
+        Movement.canStop = true;
     }
 
 }

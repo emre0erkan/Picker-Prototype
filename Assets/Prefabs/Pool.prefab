@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6550807140331952105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4749756335891073654}
+  - component: {fileID: 8545345724079358549}
+  m_Layer: 0
+  m_Name: Stop
+  m_TagString: Stop
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4749756335891073654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6550807140331952105}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.81, z: -10.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9221174653618256925}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8545345724079358549
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6550807140331952105}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.067894, y: 5.8805313, z: 1}
+  m_Center: {x: 0.4926672, y: -1.811544, z: 0}
 --- !u!1 &9221174652155576884
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9221174653618256925}
   - component: {fileID: 9221174653618256922}
-  - component: {fileID: 9221174653618256923}
+  - component: {fileID: 7119919973328779106}
   m_Layer: 0
   m_Name: Pool
   m_TagString: Untagged
@@ -444,6 +488,7 @@ Transform:
   - {fileID: 9221174653430571981}
   - {fileID: 9221174653485520031}
   - {fileID: 9221174653393601725}
+  - {fileID: 4749756335891073654}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -455,12 +500,12 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9221174653618256924}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
+  m_IsTrigger: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 12.009214, y: 1, z: 12.002716}
   m_Center: {x: -0.008222342, y: 0, z: 0.0022087097}
---- !u!114 &9221174653618256923
+--- !u!114 &7119919973328779106
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -469,11 +514,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 9221174653618256924}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c069995939c3124f92f3510cf4e4af5, type: 3}
+  m_Script: {fileID: 11500000, guid: ee0ada06f8c0d264693f15b0f383b884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  subPool: {fileID: 9221174653959287794}
   leftBarrier: {fileID: 9221174653485520030}
   rightBarrier: {fileID: 9221174653393601724}
+  ballCountText: {fileID: 9221174653225968444}
 --- !u!1 &9221174653914429070
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,7 +628,6 @@ GameObject:
   - component: {fileID: 9221174653959287793}
   - component: {fileID: 9221174653959287792}
   - component: {fileID: 9221174653959287795}
-  - component: {fileID: 9221174653959287807}
   m_Layer: 0
   m_Name: SubPool
   m_TagString: Untagged
@@ -660,24 +706,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9221174653959287794}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9221174653959287807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9221174653959287794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee0ada06f8c0d264693f15b0f383b884, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ballCountText: {fileID: 9221174653225968444}
 --- !u!1 &9221174654150804184
 GameObject:
   m_ObjectHideFlags: 0
