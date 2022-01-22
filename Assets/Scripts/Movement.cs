@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    public static float speed = 750;
     private bool isMoving;
     [SerializeField] private float lerpSpeed = 5;
     public float swerveAmount;
@@ -29,7 +29,6 @@ public class Movement : MonoBehaviour
             speed = 0;
         }
     }
-
     void FixedUpdate()
     {
         if (isMoving == true)
@@ -38,6 +37,7 @@ public class Movement : MonoBehaviour
             Vector3 sideMove = transform.right * swerveSpeed * swerveInput.MoveFactorX * Time.fixedDeltaTime;
             rb.velocity = Vector3.Lerp(rb.velocity, sideMove + forwardMove, lerpSpeed * Time.fixedDeltaTime);
         }
+        
         else if (isMoving == false)
         {
             speed = 0;
