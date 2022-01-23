@@ -9,31 +9,38 @@ public class BallCount : MonoBehaviour
     public GameObject leftBarrier;
     public GameObject rightBarrier;
 
-    public static int ballCount;
+    private int _ballCount;
     public Text ballCountText;
     public static int goal = 3;
 
     private void Start()
     {
-        ballCountText.text = ballCount.ToString() + "/" + goal.ToString();
+        ballCountText.text = _ballCount.ToString() + "/" + goal.ToString();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Ball"))
         {
-            ballCount++;
-            ballCountText.text = ballCount.ToString() + "/" + goal.ToString();
-            Destroy(other.gameObject);
-            if (ballCount >= goal)
+            this.tag = "Untagged";
+            _ballCount++;
+            ballCountText.text = _ballCount.ToString() + "/" + goal.ToString();
+            if (_ballCount >= goal)
             {
-                PoolUp();
+                StartCoroutine(DestroyBalls(other.gameObject));
             }
         }
     }
 
+    //private void OnTriggerStay(Collider other) 18.74384
+    //{
+    //    if (ballCount >= goal)
+    //    {
+    //        StartCoroutine(DestroyBalls(other.gameObject));
+    //    }
+    //}
+
     private void PoolUp()
     {
-
         subPool.transform.DOMoveY(0, 1);
         rightBarrier.transform.DORotate(new Vector3(0, 0, -90), 2f, RotateMode.Fast).OnComplete(() => { Movement.speed = 750; StartCoroutine(CanStop()); });
         leftBarrier.transform.DORotate(new Vector3(0, 0, 90), 2f, RotateMode.Fast);
@@ -45,4 +52,11 @@ public class BallCount : MonoBehaviour
         Movement.canStop = true;
     }
 
+    IEnumerator DestroyBalls(GameObject other)
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(other.gameObject);
+        PoolUp();
+
+    }
 }

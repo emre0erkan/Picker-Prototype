@@ -7,6 +7,7 @@ TagManager:
   - Stop
   - Collecter
   - Ball
+  - Pool
   layers:
   - Default
   - TransparentFX
