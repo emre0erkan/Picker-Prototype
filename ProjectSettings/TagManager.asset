@@ -8,6 +8,7 @@ TagManager:
   - Collecter
   - Ball
   - Pool
+  - LevelUp
   layers:
   - Default
   - TransparentFX

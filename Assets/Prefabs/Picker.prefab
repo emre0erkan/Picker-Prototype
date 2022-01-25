@@ -64,8 +64,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 404f52db9aee2c541889f360d6bd1f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerpSpeed: 5
-  swerveAmount: 0
+  _lerpSpeed: 5
+  ballCount: {fileID: 7119919973328779106, guid: a752a687ee7835b4983c5314ebf9f69f, type: 3}
   swerveSpeed: 0
   maxSwerveAmount: 0
 --- !u!114 &7069924100998616655

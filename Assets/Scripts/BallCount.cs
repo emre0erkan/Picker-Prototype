@@ -9,12 +9,17 @@ public class BallCount : MonoBehaviour
     public GameObject leftBarrier;
     public GameObject rightBarrier;
 
-    private int _ballCount;
+    public int _ballCount;
     public Text ballCountText;
-    public static int goal = 3;
+    public int goal;
+    public int _whichPool;
 
+
+    
     private void Start()
     {
+        goal = 3;
+        _whichPool = 1;
         ballCountText.text = _ballCount.ToString() + "/" + goal.ToString();
     }
     private void OnTriggerEnter(Collider other)
@@ -31,13 +36,6 @@ public class BallCount : MonoBehaviour
         }
     }
 
-    //private void OnTriggerStay(Collider other) 18.74384
-    //{
-    //    if (ballCount >= goal)
-    //    {
-    //        StartCoroutine(DestroyBalls(other.gameObject));
-    //    }
-    //}
 
     private void PoolUp()
     {
@@ -57,6 +55,5 @@ public class BallCount : MonoBehaviour
         yield return new WaitForSeconds(1);
         Destroy(other.gameObject);
         PoolUp();
-
     }
 }

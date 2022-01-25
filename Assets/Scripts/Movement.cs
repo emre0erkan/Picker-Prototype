@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    private static Movement instance = null;
+
     public static float speed = 750;
-    private bool isMoving;
+    private bool _isMoving;
     public static bool canStop = true;
-    [SerializeField] private float lerpSpeed = 5;
-    public float swerveAmount;
+    [SerializeField] private float _lerpSpeed = 5;
 
     SwerveInputSystem swerveInput;
     Rigidbody rb;
@@ -16,11 +17,30 @@ public class Movement : MonoBehaviour
     [SerializeField] private float swerveSpeed;
     [SerializeField] private float maxSwerveAmount;
 
+
+    public static Movement Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         swerveInput = GetComponent<SwerveInputSystem>();
-        isMoving = true;
+        _isMoving = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,17 +50,23 @@ public class Movement : MonoBehaviour
             speed = 0;
             canStop = false;
         }
+        //if (canStop && other.gameObject.tag.Equals("LevelUp"))
+        //{
+
+        //}
     }
+
+
     void FixedUpdate()
     {
-        if (isMoving == true)
+        if (_isMoving == true)
         {
             Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;        //moving forward 
             Vector3 sideMove = transform.right * swerveSpeed * swerveInput.MoveFactorX * Time.fixedDeltaTime;
-            rb.velocity = Vector3.Lerp(rb.velocity, sideMove + forwardMove, lerpSpeed * Time.fixedDeltaTime);
+            rb.velocity = Vector3.Lerp(rb.velocity, sideMove + forwardMove, _lerpSpeed * Time.fixedDeltaTime);
         }
         
-        else if (isMoving == false)
+        else if (_isMoving == false)
         {
             speed = 0;
         }
