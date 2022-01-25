@@ -462,6 +462,7 @@ GameObject:
   - component: {fileID: 9221174653618256925}
   - component: {fileID: 9221174653618256922}
   - component: {fileID: 7119919973328779106}
+  - component: {fileID: 502602732783297193}
   m_Layer: 0
   m_Name: Pool
   m_TagString: Pool
@@ -520,8 +521,23 @@ MonoBehaviour:
   subPool: {fileID: 9221174653959287794}
   leftBarrier: {fileID: 9221174653485520030}
   rightBarrier: {fileID: 9221174653393601724}
-  ballCount: 0
+  _ballCount: 0
   ballCountText: {fileID: 9221174653225968444}
+  goal: 0
+  _whichPool: 0
+--- !u!65 &502602732783297193
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9221174653618256924}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 13.55316, y: 3.8788862, z: 1.3620415}
+  m_Center: {x: -0.17780972, y: 2.9157538, z: 12.815271}
 --- !u!1 &9221174653914429070
 GameObject:
   m_ObjectHideFlags: 0

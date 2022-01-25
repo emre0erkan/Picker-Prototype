@@ -9,34 +9,31 @@ public class BallCount : MonoBehaviour
     public GameObject leftBarrier;
     public GameObject rightBarrier;
 
-    public int _ballCount;
+    public int ballCount;
     public Text ballCountText;
     public int goal;
     public int _whichPool;
-
-
     
     private void Start()
     {
+        ballCount = 0;
         goal = 3;
         _whichPool = 1;
-        ballCountText.text = _ballCount.ToString() + "/" + goal.ToString();
+        ballCountText.text = ballCount.ToString() + "/" + goal.ToString();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Ball"))
         {
-            this.tag = "Untagged";
-            _ballCount++;
-            ballCountText.text = _ballCount.ToString() + "/" + goal.ToString();
-            if (_ballCount >= goal)
+            this.tag = "LevelUp";
+            ballCount++;
+            ballCountText.text = ballCount.ToString() + "/" + goal.ToString();
+            if (ballCount >= goal)
             {
                 StartCoroutine(DestroyBalls(other.gameObject));
             }
         }
     }
-
-
     private void PoolUp()
     {
         subPool.transform.DOMoveY(0, 1);

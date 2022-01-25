@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    private static Movement instance = null;
+    //private static Movement instance = null;
 
     public static float speed = 750;
     private bool _isMoving;
@@ -18,24 +18,24 @@ public class Movement : MonoBehaviour
     [SerializeField] private float maxSwerveAmount;
 
 
-    public static Movement Instance
-    {
-        get
-        {
-            return instance;
-        }
-    }
+    //public static Movement Instance
+    //{
+    //    get
+    //    {
+    //        return instance;
+    //    }
+    //}
 
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(this.gameObject);
-        }
+    //private void Awake()
+    //{
+    //    if (instance != null && instance != this)
+    //    {
+    //        Destroy(this.gameObject);
+    //    }
 
-        instance = this;
-        DontDestroyOnLoad(this.gameObject);
-    }
+    //    instance = this;
+    //    DontDestroyOnLoad(this.gameObject);
+    //}
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -50,12 +50,16 @@ public class Movement : MonoBehaviour
             speed = 0;
             canStop = false;
         }
-        //if (canStop && other.gameObject.tag.Equals("LevelUp"))
-        //{
-
-        //}
+        if (other.gameObject.TryGetComponent(out BallCount bc) && other.gameObject.tag.Equals("LevelUp"))
+        {
+            bc.ballCount = 0;
+            other.gameObject.tag = "Pool";
+            bc._whichPool++;
+            bc.goal = 5;
+            bc.ballCountText.text = bc.ballCount.ToString() + "/" + bc.goal.ToString();
+            Debug.Log("whichpool artacak");
+        }
     }
-
 
     void FixedUpdate()
     {
